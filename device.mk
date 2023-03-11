@@ -61,7 +61,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.vulkan.deqp.level-$(VULKAN_DEQP_LEVEL).xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.vulkan.deqp.level.xml
 
 # A/B
-ifeq ($(TARGET_IS_VAB),true)
+TARGET_IS_VAB := true
+
 # Inherit virtual_ab_ota product
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 
@@ -93,7 +94,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     checkpoint_gc \
     otapreopt_script
-endif
+
+# AAPT
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -147,6 +151,10 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.btconfigstore@1.0.vendor \
     vendor.qti.hardware.btconfigstore@2.0.vendor
 
+# Boot animation
+TARGET_SCREEN_HEIGHT := 2400
+TARGET_SCREEN_WIDTH := 1080
+
 # Camera
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
@@ -158,6 +166,12 @@ PRODUCT_PACKAGES += \
     libstdc++.vendor \
     vendor.qti.hardware.camera.device@1.0.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/camera/camera_cnf.txt:$(TARGET_COPY_OUT_VENDOR)/etc/camera/camera_cnf.txt
+
+PRODUCT_PACKAGES += \
+    libpiex_shim
 
 # Configstore
 PRODUCT_PACKAGES += \
@@ -342,7 +356,7 @@ PRODUCT_PACKAGES += \
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-p404
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += $(LOCAL_PATH)/overlay/packages/apps/CarrierConfig
@@ -413,6 +427,9 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libsensorndkbridge
+
+# Shipping API level
+PRODUCT_SHIPPING_API_LEVEL := 30
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -489,4 +506,4 @@ PRODUCT_BOOT_JARS += \
     WfdCommon
 
 # Inherit the proprietary files
-$(call inherit-product, vendor/xiaomi/sm8250-common/sm8250-common-vendor.mk)
+$(call inherit-product, vendor/xiaomi/alioth/alioth-vendor.mk)
