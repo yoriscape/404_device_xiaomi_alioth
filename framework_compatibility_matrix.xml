@@ -423,4 +423,67 @@
             <instance>default</instance>
         </interface>
     </hal>
+ <hal format="hidl">
+        <name>vendor.qti.hardware.servicetracker</name>
+        <version>1.0-2</version>
+        <interface>
+            <name>IServicetracker</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.qti.memory.pasrmanager</name>
+        <version>1.0-1</version>
+        <interface>
+            <name>IPasrManager</name>
+            <instance>pasrhal</instance>
+        </interface>
+    </hal>
+	<hal format="aidl" optional="true">
+        <name>android.hardware.bluetooth.audio</name>
+        <version>1-2</version>
+        <interface>
+            <name>IBluetoothAudioProviderFactory</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.drm</name>
+        <version>1</version>
+        <interface>
+            <name>IDrmFactory</name>
+            <instance>clearkey</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.wifi.hostapd</name>
+        <version>1</version>
+        <interface>
+            <name>IHostapd</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.wifi.supplicant</name>
+        <version>1</version>
+        <interface>
+            <name>ISupplicant</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+	<hal format="hidl" optional="true">
+        <name>android.hardware.wifi</name>
+        <version>1.5-6</version>
+        <interface>
+            <name>IWifi</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl"> 
+        <name>vendor.qti.hardware.wifi.supplicant</name> 
+        <interface>
+            <name>ISupplicantVendor</name> 
+            <instance>default</instance> 
+        </interface>
+    </hal>
 </compatibility-matrix>
